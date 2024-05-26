@@ -12,7 +12,8 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Pero\\" : "src/"
+            "Pero\\" : "src/",
+            "Core\\" : "core/"
         }
     },
     "require": {}

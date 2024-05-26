@@ -1,0 +1,32 @@
+<?php
+use Core\PeroCore;
+
+require_once realpath("vendor/autoload.php");
+
+// Parse command-line arguments
+$scope = $argv[1] ?? '';
+$command = $argv[2] ?? '';
+$name = $argv[3] ?? '';
+
+$core = new PeroCore();
+
+// Execute the appropriate command
+switch ($scope) {
+    case 'migration':
+        if ($command) {
+            $core->migration($command,$name);
+        } else {
+            echo "Please provide a command.\n";
+        }
+        break;
+    case 'migrate':
+        if ($command) {
+            $core->migrate($command);
+        } else {
+            echo "Please provide a migration name.\n";
+        }
+        break;
+    default:
+        echo "Invalid command. Available commands: migration\n";
+        break;
+}
