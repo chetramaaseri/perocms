@@ -16,5 +16,8 @@
             "Core\\" : "core/"
         }
     },
-    "require": {}
+    "require": {
+        "phpmyadmin/sql-parser": "^6.0@dev",
+        "rybakit/msgpack": "dev-master"
+    }
 }

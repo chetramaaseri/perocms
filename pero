@@ -26,6 +26,13 @@ switch ($scope) {
             echo "Please provide a migration name.\n";
         }
         break;
+    case 'backup':
+        if ($command) {
+            $core->backup($command,$name);
+        } else {
+            echo "Please provide a migration name.\n";
+        }
+        break;
     default:
         echo "Invalid command. Available commands: migration\n";
         break;

@@ -58,6 +58,6 @@ class Hehe extends PeroMigration
      */
     public function down()
     {
-        $this->dropIfExists('users');
+        $this->dropIfExists('hehe');
     }
 }
