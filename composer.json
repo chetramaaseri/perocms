@@ -1,0 +1,19 @@
+{
+    "name": "chetramaaseri/perocms",
+    "description": "A streamlined content management system designed for managing blogs and static content. It offers an intuitive interface for effortless content creation and organization. Perfect for users seeking a simple yet powerful backend solution for their websites.",
+    "type": "project",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "chetramaaseri",
+            "email": "developer.chetramaaseri@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Pero\\" : "src/"
+        }
+    },
+    "require": {}
+}
