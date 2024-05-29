@@ -128,7 +128,7 @@ class PeroCore extends PeroApp{
                     ]
                 ]);
         
-                \$this->run(\$migrationName,\$schema);
+                \$this->run('$migrationName',\$schema);
             }
         
             /**
