@@ -1,13 +1,14 @@
 <?php
 namespace Core;
 
-use Core\PeroApp;
-
-class PeroCore extends PeroApp{
+class PeroCore {
 
     private $directory = 'src/Database/Migrations';
+    public $db;
+    // public $load;
     public function __construct(){
-        parent::__construct();
+        $this->db = new PeroDatabase(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
+        // $this->load = new PeroLoad("core/views");
     }
 
     public function migration($command,$name){
@@ -33,6 +34,7 @@ class PeroCore extends PeroApp{
     }
 
     public function migrate($tableName){
+        $tableName = table_prefix.$tableName;
         $directory = $this->directory;
         $files = scandir($directory);
 
@@ -53,6 +55,9 @@ class PeroCore extends PeroApp{
         if (!empty($phpFiles)) {
             $latestFile = $phpFiles[0];
             $this->runMigrationFile($tableName,$latestFile);
+            // if($this->runMigrationFile($tableName,$latestFile)){
+                // echo "Migration Run Successfully";
+            // }
         } else {
             echo "No Migration found of name $tableName.\n";
         }
@@ -74,6 +79,7 @@ class PeroCore extends PeroApp{
     }
 
     private function createMigrationFile($migrationName){
+        $migrationName = table_prefix.$migrationName;
         $timestamp = date('Y_m_d_His');
         $className = ucfirst($migrationName);
         $filename = "src/Database/migrations/{$timestamp}_{$migrationName}.php";
@@ -138,7 +144,7 @@ class PeroCore extends PeroApp{
              */
             public function down()
             {
-                \$this->dropIfExists('\$migrationName');
+                \$this->dropIfExists('$migrationName');
             }
         }
         PHP;
@@ -154,6 +160,7 @@ class PeroCore extends PeroApp{
             $migration = new $className();
             if (method_exists($migration, 'up')) {
                 $migration->up();
+                return true;
             } else {
                 echo $table." Migration File Corrupted";
             }

@@ -1,5 +1,9 @@
 <?php 
 namespace Pero\Controllers;
-class PeroController{
+use Core\PeroApp;
+class PeroController extends PeroApp{
 
+    public function __construct(){
+        parent::__construct();
+    }
 }

@@ -1,5 +1,8 @@
 <?php
 namespace Pero\Models;
-class PeroModel{
-
+use Core\PeroApp;
+class PeroModel extends PeroApp{
+    public function __construct(){
+        parent::__construct();
+    }
 }
