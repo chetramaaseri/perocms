@@ -2,7 +2,6 @@
 
 namespace Core;
 
-
 class PeroMigration extends PeroCore{
 
     public function run($table,$schema){
@@ -10,6 +9,7 @@ class PeroMigration extends PeroCore{
         if($this->db->validate($schema)){
             if($this->db->table_exists($table)){
                 $this->db->backup($table);
+                $this->dropIfExists($table);
                 $this->db->query($schema);
             }else{
                 $this->db->query($schema);
@@ -21,9 +21,9 @@ class PeroMigration extends PeroCore{
         // drop table if exists
         if($this->db->table_exists($table)){
             $this->db->drop($table);
-            echo "Migration removed successfully";
+            return "Migration removed successfully";
         }else{
-            echo "Migration does not exists in database";
+            return "Migration does not exists in database";
         }
     }
 }

@@ -39,7 +39,7 @@ define( 'DB_COLLATE', '' );
  * You can have multiple installations in one database if you give each
  * a unique prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix = 'pero_';
+define( 'table_prefix', 'pero_' );
 
 
 /**
@@ -48,3 +48,11 @@ $table_prefix = 'pero_';
  * This Will be served by default
  */
 define( 'DefaultController', 'Home' );
+
+
+
+/**
+ * Pero Auth Libaray Added For General Authentication.
+ *
+ */
+define( 'PERO_AUTH', true );
