@@ -1,5 +1,6 @@
 <?php
 use Pero\Controllers;
+use Core\PeroLoad;
 
 require_once realpath("vendor/autoload.php");
 require_once realpath("config.php");

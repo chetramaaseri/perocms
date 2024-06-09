@@ -7,7 +7,7 @@ class PeroSession{
         if(!session_id()){
             session_start();
         }
-        
+        $this->load();
     }
 
     private function load(){

@@ -27,9 +27,11 @@ class AuthModel extends PeroModel{
     public function checkSession():bool
     {
         if(isset($_COOKIE['authorised'])){
-            $expiry_time = time() + (4 * 60 * 60);
-            setcookie("authorised",$_COOKIE['uid'],$expiry_time,"/");
-            setcookie("uid",$_COOKIE['uid'],$expiry_time,"/");
+            if(isset($_COOKIE['usernameSave'])){
+                $expiry_time = time() + (4 * 60 * 60);
+                setcookie("authorised",$_COOKIE['uid'],$expiry_time,"/");
+                setcookie("uid",$_COOKIE['uid'],$expiry_time,"/");
+            }
             return true;
         }
         header("Location:". $GLOBALS['pero_url']."/auth");

@@ -1,8 +1,10 @@
 <?php
 namespace Pero\Controllers;
+use Core\PeroSession;
 use Pero\Models\AuthModel;
 class Auth extends PeroController{
     private $auth;
+    public  $session;
     public function __construct(){
         parent::__construct();
         if(!defined('PERO_AUTH')){
@@ -29,6 +31,7 @@ class Auth extends PeroController{
         }
         $this->load->options();
         $this->auth = new AuthModel();
+        $this->session = new PeroSession();
     }
 
     public function index(){
@@ -42,6 +45,7 @@ class Auth extends PeroController{
             $user = $this->auth->findUser(["username" => $_POST['username']]);
             $user = empty($user) ? $this->auth->findUser(["email" => $_POST['username']]) : $user;
             if(!empty($user) && md5(md5($_POST['password'])) == $user['password']){
+                $this->session->set_array($user);
                 $this->auth->startSession($user);
                 header("Location: ".$GLOBALS['base_url']);
                 exit;

@@ -4,9 +4,11 @@ namespace Core;
 class PeroLoad extends PeroCore{
 
     private $directory;
+    private $session;
     public function __construct($directory = "src/Views"){
         parent::__construct();
         $this->directory = $directory;
+        $this->session = new PeroSession();
     }
     
     public function options(){
@@ -29,7 +31,12 @@ class PeroLoad extends PeroCore{
     public function view($view,$data = []){
         extract($GLOBALS);
         extract($data);
-        require realpath($this->directory."/".$view.".php");
+        include realpath($this->directory."/".$view.".php");
+    }
+    public function render($view,$data = []){
+        extract($GLOBALS);
+        extract($data);
+        include realpath($this->directory."/".$view.".php");
     }
 
 }
